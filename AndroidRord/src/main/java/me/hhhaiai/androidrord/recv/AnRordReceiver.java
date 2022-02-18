@@ -23,7 +23,6 @@ public class AnRordReceiver extends BroadcastReceiver {
                 Logs.e("Receiver action is null! intent:" + intent);
                 return;
             }
-            Logs.i(" 收到广播: " + intent.toString());
             if (RordImpl.ACTIONS.contains(action)) {
                 // has  custom action, will process.
                 if (RordImpl.CALLBACK == null) {
