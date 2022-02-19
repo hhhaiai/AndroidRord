@@ -30,7 +30,7 @@ local.properties
 *gen/
 *.classpath
 */bin/
-
+target/
 
 #temp file
 *.bak

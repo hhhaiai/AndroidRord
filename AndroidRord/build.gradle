@@ -2,12 +2,15 @@ plugins {
     id 'com.android.library'
 }
 
+def verint = 1
+def verion = "1.0.0"
 android {
     compileSdk 31
 
     defaultConfig {
         minSdk 16
         targetSdk 31
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
