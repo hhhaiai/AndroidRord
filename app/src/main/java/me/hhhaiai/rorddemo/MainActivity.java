@@ -3,13 +3,14 @@ package me.hhhaiai.rorddemo;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 
 import me.hhhaiai.androidrord.utils.Logs;
 
 public class MainActivity extends Activity {
     private static final String TAG = "MainActivity";
-    private CRelativeLayout mLayout = null;
+    private static CRelativeLayout mLayout = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +61,14 @@ public class MainActivity extends Activity {
         setContentView(mLayout);
     }
 
+    public static void showMsg(String info) {
+        if (!TextUtils.isEmpty(info)) {
+            mLayout.showInPage(info);
+        } else {
+            Logs.e("MainActivity the show msg if null!");
+        }
+    }
+
     /**
      * can work
      * @param action
@@ -69,7 +78,9 @@ public class MainActivity extends Activity {
         i.setPackage(getPackageName());
         i.putExtra("msg", "this is data from  " + action);
         i.setAction(action);
+        i.addFlags(Intent.FLAG_RECEIVER_FOREGROUND);
         sendBroadcast(i);
+        Logs.i("sendBroadcast over");
     }
 
     // shell send command .
@@ -81,5 +92,6 @@ public class MainActivity extends Activity {
         } catch (Exception e) {
             Logs.e(e);
         }
+        Logs.i("shell send msg over.");
     }
 }

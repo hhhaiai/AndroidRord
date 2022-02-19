@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import me.hhhaiai.androidrord.IRordCallback;
 import me.hhhaiai.androidrord.utils.Logs;
+import me.hhhaiai.rorddemo.MainActivity;
 
 /**
  * @Copyright © 2022 sanbo Inc. All rights reserved.
@@ -42,6 +43,10 @@ public class ActionProcess1 implements IRordCallback {
 
     @Override
     public void onReceiverAction(String action, Intent intent) {
-        Logs.i("ActionProcess1:" + intent);
+        StringBuffer sb = new StringBuffer();
+
+        sb.append("===========ActionProcess1[").append(action).append("]=======\r\n").append(intent.toString());
+        Logs.i(sb.toString());
+        MainActivity.showMsg(sb.toString());
     }
 }
