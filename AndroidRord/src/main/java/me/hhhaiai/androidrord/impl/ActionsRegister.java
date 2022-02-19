@@ -1,4 +1,4 @@
-package me.hhhaiai.androidrord.recv;
+package me.hhhaiai.androidrord.impl;
 
 
 import android.content.Context;
@@ -12,25 +12,45 @@ import java.util.List;
 import me.hhhaiai.androidrord.utils.Logs;
 
 
-public class ReceiverUtils {
-    private AnRordReceiver mReceiver = null;
+class ActionsRegister {
+    private AroReceiver mReceiver = null;
 
     @SuppressWarnings("unused")
     private boolean sWorkStatus = false;
 
-    private ReceiverUtils() {
+    private ActionsRegister() {
     }
 
-    public static ReceiverUtils getInstance() {
+    public static ActionsRegister getInstance() {
         return Holder.INSTANCE;
     }
 
+    /**
+     * support  more init . more set actions
+     * @param context
+     * @param actions
+     */
+    public void addActions(Context context, List<String> actions) {
+        registAllReceiver(context);
+        if (actions == null || actions.size() < 1) {
+            Logs.i("the action is null!");
+            return;
+        }
+        // custiom
+        IntentFilter intentFilter = new IntentFilter();
+        for (String custionAction : actions) {
+            intentFilter.addAction(custionAction);
+        }
+        intentFilter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
+        context.registerReceiver(mReceiver, intentFilter);
+    }
+
     @SuppressWarnings("deprecation")
-    public void registAllReceiver(Context context, List<String> actions) {
+    public void registAllReceiver(Context context) {
         try {
             setWork(true);
             if (mReceiver == null) {
-                mReceiver = new AnRordReceiver();
+                mReceiver = new AroReceiver();
                 IntentFilter intentFilter = new IntentFilter();
                 if (Build.VERSION.SDK_INT < 24) {
                     intentFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
@@ -119,14 +139,6 @@ public class ReceiverUtils {
                 intentFilter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
                 context.registerReceiver(mReceiver, intentFilter);
 
-                // custiom
-                intentFilter = new IntentFilter();
-                for (String custionAction : actions) {
-                    intentFilter.addAction(custionAction);
-                }
-                intentFilter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
-                context.registerReceiver(mReceiver, intentFilter);
-
             }
         } catch (Throwable e) {
             setWork(false);
@@ -152,6 +164,6 @@ public class ReceiverUtils {
     }
 
     private static class Holder {
-        private static final ReceiverUtils INSTANCE = new ReceiverUtils();
+        private static final ActionsRegister INSTANCE = new ActionsRegister();
     }
 }

@@ -1,4 +1,4 @@
-package me.hhhaiai.rorddemo.utils;
+package me.hhhaiai.rorddemo;
 
 
 import android.app.Activity;
@@ -258,12 +258,12 @@ public class CRelativeLayout extends RelativeLayout {
             statusBarHeight = getStatusBarHeightB();
         }
         int navigationBarHeight = getNavigationBarHeight();
-        loe("sanbo", "height:" + height
-                + ", actionBarH:" + actionBarH
-                + ", statusBarHeight:" + statusBarHeight
-                + ", navigationBarHeight:" + navigationBarHeight
-        );
-//        return height - actionBarH - statusBarHeight - navigationBarHeight - textViewHeight;
+//        loe("sanbo", "height:" + height
+//                + ", actionBarH:" + actionBarH
+//                + ", statusBarHeight:" + statusBarHeight
+//                + ", navigationBarHeight:" + navigationBarHeight
+//        );
+////        return height - actionBarH - statusBarHeight - navigationBarHeight - textViewHeight;
         return height - actionBarH - statusBarHeight - textViewHeight;
     }
 

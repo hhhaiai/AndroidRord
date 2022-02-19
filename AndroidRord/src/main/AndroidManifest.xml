@@ -4,7 +4,7 @@
 
     <application>
         <receiver
-            android:name="me.hhhaiai.androidrord.recv.AnRordReceiver"
+            android:name="me.hhhaiai.androidrord.impl.AroReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter android:priority="9999">
