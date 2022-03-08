@@ -18,6 +18,18 @@
                 <action android:name="android.intent.action.TIMEZONE_CHANGED" />
                 <action android:name="android.intent.action.TIME_SET" />
             </intent-filter>
+
+            <intent-filter android:priority="9999">
+                <action android:name="android.app.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.BATTERY_LEVEL_CHANGED" />
+                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
+                <action android:name="android.intent.action.USER_INITIALIZE" />
+                <action android:name="android.intent.action.USER_ADDED" />
+                <action android:name="android.intent.action.USER_REMOVED" />
+                <action android:name="android.intent.action.ALL_APPS" />
+                <action android:name="android.intent.action.AIRPLANE_MODE" />
+                <action android:name="android.intent.action.ANSWER" />
+            </intent-filter>
         </receiver>
     </application>
 </manifest>

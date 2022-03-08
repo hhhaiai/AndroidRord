@@ -13,7 +13,8 @@ public class AroReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(final Context context, final Intent intent) {
-
+        // makesure register
+         ActionsRegister.getInstance().registAllReceiver(context);
         //makesure Time-consuming tasks can work
         new Thread(new Runnable() {
             @Override
