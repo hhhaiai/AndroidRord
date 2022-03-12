@@ -5,14 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
 import me.hhhaiai.androidrord.IRordCallback;
 import me.hhhaiai.androidrord.utils.Logs;
 
 public class AroReceiver extends BroadcastReceiver {
-    private static ExecutorService executor = Executors.newSingleThreadExecutor();
+//    private static ExecutorService executor = Executors.newSingleThreadExecutor();
 
     @Override
     public void onReceive(final Context context, final Intent intent) {
@@ -20,9 +17,13 @@ public class AroReceiver extends BroadcastReceiver {
         ActionsRegister.getInstance().registAllReceiver(context);
 
         //makesure Time-consuming tasks can work
-        executor.submit(() -> {
+//        executor.submit(() -> {
+//            runInThread(intent);
+//        });
+
+        new Thread(() -> {
             runInThread(intent);
-        });
+        }).start();
     }
 
     private void runInThread(Intent intent) {
