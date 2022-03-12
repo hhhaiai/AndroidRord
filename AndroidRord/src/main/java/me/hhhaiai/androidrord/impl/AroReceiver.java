@@ -5,23 +5,24 @@ import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 import me.hhhaiai.androidrord.IRordCallback;
 import me.hhhaiai.androidrord.utils.Logs;
 
 public class AroReceiver extends BroadcastReceiver {
-
+    private static ExecutorService executor = Executors.newSingleThreadExecutor();
 
     @Override
     public void onReceive(final Context context, final Intent intent) {
         // makesure register
-         ActionsRegister.getInstance().registAllReceiver(context);
+        ActionsRegister.getInstance().registAllReceiver(context);
+
         //makesure Time-consuming tasks can work
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                runInThread(intent);
-            }
-        }).run();
+        executor.submit(() -> {
+            runInThread(intent);
+        });
     }
 
     private void runInThread(Intent intent) {
@@ -36,7 +37,7 @@ public class AroReceiver extends BroadcastReceiver {
                 return;
             }
             // just found support actions
-            if (RordImpl.MAPPING_MAP.containsKey(action)){
+            if (RordImpl.MAPPING_MAP.containsKey(action)) {
                 IRordCallback callback = RordImpl.MAPPING_MAP.get(action);
                 // has  custom action, will process.
                 if (callback == null) {
@@ -45,8 +46,6 @@ public class AroReceiver extends BroadcastReceiver {
                     callback.onReceiverAction(action, new Intent(intent));
                 }
             }
-
-
         } catch (Throwable e) {
             Logs.e(e);
         }
