@@ -17,19 +17,20 @@
 
 * 初始化
 
-    ``` java
-    //一对一
-    AndRord.init(Context context, String action, IRordCallback callback);
-    //多对一
-    AndRord.init(Context context, List<String> actions, IRordCallback callback);
-    //多对
-    AndRord.init(Context context, Map<String, IRordCallback> actionAndCallback)
-    ```
+``` java
+//一对一
+AndRord.init(Context context, String action, IRordCallback callback);
+//多对一
+AndRord.init(Context context, List<String> actions, IRordCallback callback);
+//多对
+AndRord.init(Context context, Map<String, IRordCallback> actionAndCallback)
+```
 
 
 * 调用方式:
 
   - 代码广播，如下:
+  
   ``` java
    // 发送自定义action1的广播，附加key、value参数
    Intent i = new Intent("action1");
@@ -41,6 +42,7 @@
   ```
   
   - shell指令,这种方式应用内无法发送，如有能搞定的方案可以Issues联系。如下:
+  
   ``` shell
    # 发送自定义action1的广播，附加key、value参数
    adb shell am broadcast -a action1 --es msg1 'hello action1'
