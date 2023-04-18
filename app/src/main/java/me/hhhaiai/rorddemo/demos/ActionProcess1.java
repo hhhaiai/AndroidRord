@@ -1,4 +1,4 @@
-package me.hhhaiai.rorddemo.dpres;
+package me.hhhaiai.rorddemo.demos;
 
 import android.content.Context;
 import android.content.Intent;

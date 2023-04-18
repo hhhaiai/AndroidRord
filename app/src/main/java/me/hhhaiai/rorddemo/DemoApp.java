@@ -8,8 +8,8 @@ import java.util.Map;
 
 import me.hhhaiai.androidrord.AndRord;
 import me.hhhaiai.androidrord.IRordCallback;
-import me.hhhaiai.rorddemo.dpres.ActionProcess1;
-import me.hhhaiai.rorddemo.dpres.ActionProcess2;
+import me.hhhaiai.rorddemo.demos.ActionProcess1;
+import me.hhhaiai.rorddemo.demos.ActionProcess2;
 
 public class DemoApp extends Application {
     @Override

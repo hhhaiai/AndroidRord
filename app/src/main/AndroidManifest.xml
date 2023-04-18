@@ -8,8 +8,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:name=".DemoApp"
-        android:theme="@style/Theme.AndroidRord">
+        android:name=".DemoApp">
         <activity
             android:name="me.hhhaiai.rorddemo.MainActivity"
             android:exported="true">
