@@ -27,7 +27,6 @@ AndRord.init(Context context, List<String> actions, IRordCallback callback);
 AndRord.init(Context context, Map<String, IRordCallback> actionAndCallback)
 ```
 
-
 * 调用方式:
 
   - 代码广播，如下:
@@ -48,3 +47,4 @@ AndRord.init(Context context, Map<String, IRordCallback> actionAndCallback)
    # 发送自定义action1的广播，附加key、value参数
    adb shell am broadcast -a action1 --es msg1 'hello action1'
   ```
+
